@@ -1,8 +1,5 @@
 \documentclass[12pt,a4paper]{article}
 
-% --------------------------------------------------
-% PAQUETES
-% --------------------------------------------------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
@@ -12,41 +9,30 @@
 \usepackage{url}
 \usepackage{array}
 \usepackage{float}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{enumitem}
 
-\geometry{
-    top=1.5cm,
-    bottom=1.5cm,
-    left=2cm,
-    right=2cm
-}
-
-\hypersetup{
-    colorlinks=true,
-    urlcolor=blue,
-    linkcolor=black
-}
-
-\pagestyle{empty}
+\geometry{top=1.5cm,bottom=1.5cm,left=2cm,right=2cm}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\renewcommand{\arraystretch}{1.25}
 
 \begin{document}
+\pagestyle{empty}
 
 % ==================================================
 % CARÁTULA
 % ==================================================
-
 \begin{center}
-
 {\Large \textbf{UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO}}\\[0.2cm]
-
 {\large Facultad de Ciencias de la Ingeniería}\\
 {\large Carrera de Ingeniería de Software}\\[0.5cm]
-
 \rule{\textwidth}{0.6pt}\\[0.4cm]
-
 {\LARGE \textbf{PRUEBA PRÁCTICA --- UNIDAD IV}}\\[0.2cm]
-
 {\large Validación, Gestión, Herramientas y Estándares de Requisitos}\\[0.5cm]
-
 \rule{\textwidth}{0.6pt}\\[0.5cm]
 
 \begin{tabular}{>{\bfseries}p{4.2cm} p{10cm}}
@@ -58,44 +44,304 @@ Docente: & Ing. Gleiston Guerrero, Mg. \\[0.15cm]
 Caso práctico: & Sistema de Gestión de Pedidos \\
 \end{tabular}
 
-\vspace{0.45cm}
-
+\vspace{0.4cm}
 {\bfseries Repositorio GitHub:}\\[0.15cm]
+\resizebox{0.97\textwidth}{!}{\href{https://github.com/David-Bs1/Evaluacion-IR-Unidad-IV-VacaDavid}{\texttt{https://github.com/David-Bs1/Evaluacion-IR-Unidad-IV-VacaDavid}}}
 
-\resizebox{0.97\textwidth}{!}{
-\href{https://github.com/David-Bs1/Evaluacion-IR-Unidad-IV-VacaDavid}
-{\texttt{https://github.com/David-Bs1/Evaluacion-IR-Unidad-IV-VacaDavid}}
-}
+\vspace{0.4cm}
+{\large \textbf{Captura del resumen del cuestionario SGA}}\\[0.1cm]
+\includegraphics[width=0.90\textwidth,height=5cm,keepaspectratio]{figuras/resumen_cuestionario_sga.png}
 
-\vspace{0.45cm}
-
-{\large \textbf{Captura del resumen del cuestionario SGA}}\\[0.15cm]
-
-\includegraphics[
-    width=0.90\textwidth,
-    height=5.0cm,
-    keepaspectratio
-]{figuras/resumen_cuestionario_sga.png}
-
-\vspace{0.25cm}
-
-{\large \textbf{Captura de la evaluación del intento SGA}}\\[0.15cm]
-
-\includegraphics[
-    width=0.90\textwidth,
-    height=5.0cm,
-    keepaspectratio
-]{figuras/revision_intento_sga.png}
-
+\vspace{0.2cm}
+{\large \textbf{Captura de la evaluación del intento SGA}}\\[0.1cm]
+\includegraphics[width=0.90\textwidth,height=5cm,keepaspectratio]{figuras/revision_intento_sga.png}
 \end{center}
-
-% ==================================================
-% AQUÍ COMENZARÁ POSTERIORMENTE EL DESARROLLO
-% ==================================================
 
 \newpage
 \pagestyle{plain}
 
-% P1, P2, P3... se agregarán aquí posteriormente.
+% ==================================================
+% P1
+% ==================================================
+\section{P1. Modelo de datos --- Diagrama de clases UML}
+Se presenta el diagrama de clases UML elaborado para el dominio del Sistema de Gestión de Pedidos, con las clases Cliente, Pedido, Línea de Pedido y Producto.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth,height=19cm,keepaspectratio]{figuras/P1_diagrama_clases.jpeg}
+\caption{Diagrama de clases UML elaborado durante la evaluación.}
+\end{figure}
+
+% ==================================================
+% P2
+% ==================================================
+\section{P2. Modelo funcional --- Diagrama de actividades UML}
+El proceso representado corresponde al registro de un pedido. Para la validación del flujo se consideran las acciones de seleccionar producto, verificar disponibilidad, confirmar el pedido cuando existe stock y notificar el faltante cuando no existe disponibilidad.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth,height=19cm,keepaspectratio]{figuras/P2_diagrama_actividades.jpeg}
+\caption{Modelo funcional elaborado durante la evaluación.}
+\end{figure}
+
+% ==================================================
+% P3
+% ==================================================
+\section{P3. Modelo de comportamiento --- Máquina de estados UML}
+La máquina de estados representa el ciclo de vida del pedido desde su registro hasta su entrega o cancelación. Los estados considerados son Registrado, Confirmado, Enviado, Entregado y Cancelado. La cancelación se permite únicamente mientras el pedido no haya sido entregado.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth,height=18cm,keepaspectratio]{figuras/P3_maquina_estados.jpeg}
+\caption{Máquina de estados UML elaborada durante la evaluación.}
+\end{figure}
+
+% ==================================================
+% P4
+% ==================================================
+\section{P4. Consistencia entre las tres perspectivas}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|p{3.2cm}|X|X|X|}
+\hline
+\textbf{Evento o situación} & \textbf{P1: entidad/atributo} & \textbf{P2: función/acción} & \textbf{P3: estado/evento} \\
+\hline
+Seleccionar producto & Producto: código, descripción, precio & Seleccionar producto & Pedido registrado \\
+\hline
+Verificar disponibilidad & Producto: stock & Verificar disponibilidad de stock & Transición desde Registrado \\
+\hline
+Confirmar pedido & Pedido: identificador, fecha, total & Confirmar pedido & Confirmado \\
+\hline
+Cancelar por falta de stock & Producto: stock / Pedido & Notificar faltante y cancelar & Cancelado \\
+\hline
+Enviar pedido confirmado & Pedido & \textbf{No estaba representado de forma explícita} & Enviado \\
+\hline
+Entregar pedido & Pedido & Finalización del proceso posterior al envío & Entregado \\
+\hline
+\end{tabularx}
+\caption{Verificación cruzada entre los modelos P1, P2 y P3.}
+\end{table}
+
+\textbf{Inconsistencia detectada:} en P3 existe el evento de envío del pedido, pero en P2 no se representaba explícitamente la acción correspondiente después de confirmar el pedido.
+
+\textbf{Corrección aplicada:} se incorpora al flujo funcional, después de ``Confirmar pedido'', la acción ``Notificar/procesar el envío del producto'', manteniendo coherencia con el estado \textit{Enviado} de P3.
+
+% ==================================================
+% P5
+% ==================================================
+\section{P5. Especificación de requisitos con esquema de atributos}
+
+\subsection*{RF-01 --- Registrar múltiples pedidos}
+\begin{tabularx}{\textwidth}{|p{4cm}|X|}\hline
+Identificador & RF-01 \\\hline
+Requisito & El sistema deberá registrar al menos dos pedidos simultáneos sin pérdida, duplicación ni mezcla de información. \\\hline
+Prioridad & Must \\\hline
+Estado & Propuesto \\\hline
+Fuente & Caso práctico: Sistema de Gestión de Pedidos \\\hline
+Estabilidad & Alta \\\hline
+Versión & 1.0 \\\hline
+Método de verificación & Prueba de aceptación PA-01 \\\hline
+\end{tabularx}
+
+\subsection*{RF-02 --- Proteger datos del cliente}
+\begin{tabularx}{\textwidth}{|p{4cm}|X|}\hline
+Identificador & RF-02 \\\hline
+Requisito & El sistema deberá restringir el acceso a los datos personales del cliente a usuarios autorizados. \\\hline
+Prioridad & Should \\\hline
+Estado & Propuesto \\\hline
+Fuente & Caso práctico: proteger los datos personales del cliente \\\hline
+Estabilidad & Alta \\\hline
+Versión & 1.0 \\\hline
+Método de verificación & Prueba de aceptación PA-02 \\\hline
+\end{tabularx}
+
+\subsection*{RNF-01 --- Eficiencia de desempeño}
+\begin{tabularx}{\textwidth}{|p{4cm}|X|}\hline
+Identificador & RNF-01 \\\hline
+Característica ISO/IEC 25010:2023 & Eficiencia de desempeño \\\hline
+Requisito & El sistema deberá registrar cada pedido en menos de 3 segundos, medidos desde la confirmación de la solicitud hasta la visualización de la confirmación, bajo condiciones normales de operación y con stock disponible. \\\hline
+Métrica & Tiempo de respuesta en segundos \\\hline
+Umbral & Menor a 3 segundos \\\hline
+Prioridad & Must \\\hline
+Estado & Propuesto \\\hline
+Fuente & Caso práctico: registrar los pedidos con rapidez \\\hline
+Estabilidad & Alta \\\hline
+Versión & 1.0 \\\hline
+Método de verificación & Prueba de aceptación PA-03 \\\hline
+\end{tabularx}
+
+\subsection*{RNF-02 --- Seguridad}
+\begin{tabularx}{\textwidth}{|p{4cm}|X|}\hline
+Identificador & RNF-02 \\\hline
+Característica ISO/IEC 25010:2023 & Seguridad \\\hline
+Requisito & El 100\% de los datos personales del cliente almacenados y clasificados como sensibles deberán mantenerse cifrados en reposo. \\\hline
+Métrica & Porcentaje de datos personales sensibles almacenados con cifrado \\\hline
+Umbral & 100\% \\\hline
+Prioridad & Could \\\hline
+Estado & Propuesto \\\hline
+Fuente & Caso práctico: proteger los datos personales del cliente \\\hline
+Estabilidad & Alta \\\hline
+Versión & 1.0 \\\hline
+Método de verificación & Prueba de aceptación PA-04 \\\hline
+\end{tabularx}
+
+% ==================================================
+% P6
+% ==================================================
+\section{P6. Priorización MoSCoW}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|p{2cm}|p{2.2cm}|X|}
+\hline
+\textbf{Requisito} & \textbf{MoSCoW} & \textbf{Justificación} \\
+\hline
+RF-01 & Must & Es la funcionalidad principal del sistema, porque sin registrar pedidos no se cumple el objetivo del módulo. \\
+\hline
+RF-02 & Should & Es importante para proteger la información del cliente, aunque el flujo básico de registro puede implementarse primero. \\
+\hline
+RNF-01 & Must & La rapidez de registro es una necesidad explícita del caso y afecta directamente la operación del sistema. \\
+\hline
+RNF-02 & Could & El cifrado fortalece la seguridad de la información y puede incorporarse como mejora posterior sin impedir el flujo funcional principal. \\
+\hline
+\end{tabularx}
+\caption{Priorización MoSCoW de los requisitos de P5.}
+\end{table}
+
+% ==================================================
+% P7
+% ==================================================
+\section{P7. Validación por inspección --- ISO/IEC/IEEE 29148}
+
+\subsection*{Paso 1. Identificación de defectos}
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{|p{1.5cm}|p{1.5cm}|p{1.4cm}|p{1.4cm}|p{1.5cm}|p{1.3cm}|X|}
+\hline
+\textbf{Req.} & \textbf{No ambiguo} & \textbf{Completo} & \textbf{Singular} & \textbf{Verificable} & \textbf{Factible} & \textbf{Defecto detectado} \\
+\hline
+RF-01 & No & Parcial & Sí & No & Sí & ``Múltiples'' y ``menor tiempo posible'' no fijaban una condición verificable. \\
+\hline
+RF-02 & No & No & Sí & No & Sí & ``Proteger'' no indicaba qué comportamiento debía realizar el sistema. \\
+\hline
+RNF-01 & Sí & Parcial & Sí & Sí & Sí & Faltaba precisar desde qué instante hasta qué instante se mide el tiempo y bajo qué condición. \\
+\hline
+RNF-02 & No & No & Sí & No & Sí & No existía métrica ni umbral y la expresión sobre información que no se mostraría era ambigua. \\
+\hline
+\end{tabularx}
+\caption{Lista de comprobación aplicada antes del retrabajo.}
+\end{table}
+
+\subsection*{Paso 2. Retrabajo de los requisitos}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{RF-01 corregido:} El sistema deberá registrar al menos dos pedidos simultáneos sin pérdida, duplicación ni mezcla de información.
+\item \textbf{RF-02 corregido:} El sistema deberá restringir el acceso a los datos personales del cliente a usuarios autorizados.
+\item \textbf{RNF-01 corregido:} El sistema deberá registrar cada pedido en menos de 3 segundos, medidos desde la confirmación de la solicitud hasta la visualización de la confirmación, bajo condiciones normales de operación y con stock disponible.
+\item \textbf{RNF-02 corregido:} El 100\% de los datos personales del cliente almacenados y clasificados como sensibles deberán mantenerse cifrados en reposo.
+\end{enumerate}
+
+% ==================================================
+% P8
+% ==================================================
+\section{P8. Pruebas de aceptación trazadas}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{|p{1.4cm}|p{1.7cm}|p{2cm}|X|X|}
+\hline
+\textbf{Prueba} & \textbf{Tipo} & \textbf{Requisito} & \textbf{Entradas} & \textbf{Criterio de éxito} \\
+\hline
+PA-01 & Funcional & RF-01 & Dos solicitudes válidas de pedido enviadas de forma simultánea. & Ambos pedidos quedan registrados con identificadores independientes, sin pérdida, duplicación ni mezcla de datos. \\
+\hline
+PA-02 & Funcional & RF-02 & Un usuario autorizado, un usuario no autorizado y datos personales de un cliente. & El usuario autorizado puede consultar los datos permitidos y el usuario no autorizado recibe denegación de acceso. \\
+\hline
+PA-03 & No funcional & RNF-01 & Un pedido válido con productos que poseen stock. & El tiempo entre la confirmación de la solicitud y la confirmación del registro es menor a 3 segundos. \\
+\hline
+PA-04 & No funcional & RNF-02 & Conjunto de datos personales sensibles almacenados para la prueba. & El 100\% de los datos sensibles definidos se encuentra cifrado en reposo y no aparece almacenado como texto legible. \\
+\hline
+\end{tabularx}
+\caption{Pruebas de aceptación y trazabilidad hacia los requisitos.}
+\end{table}
+
+% ==================================================
+% P9
+% ==================================================
+\section{P9. Matriz de trazabilidad}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{|p{1.4cm}|p{2.6cm}|X|p{1.5cm}|p{2.2cm}|p{1.4cm}|}
+\hline
+\textbf{Req.} & \textbf{Fuente} & \textbf{Modelo asociado} & \textbf{Prueba} & \textbf{Dependencia horizontal} & \textbf{Huérfano} \\
+\hline
+RF-01 & Caso práctico: registrar pedidos & P1 Pedido/Línea de Pedido; P2 registrar y confirmar pedido; P3 Registrado/Confirmado & PA-01 & Depende de RNF-01 & No \\
+\hline
+RF-02 & Caso práctico: proteger datos personales & P1 Cliente y sus datos personales & PA-02 & Se relaciona con RNF-02 & No \\
+\hline
+RNF-01 & Caso práctico: registrar con rapidez & P2 flujo de registro de pedido & PA-03 & Condiciona el desempeño de RF-01 & No \\
+\hline
+RNF-02 & Caso práctico: proteger datos personales & P1 Cliente & PA-04 & Refuerza RF-02 & No \\
+\hline
+\end{tabularx}
+\caption{Matriz de trazabilidad hacia atrás, hacia adelante y horizontal.}
+\end{table}
+
+\textbf{Resultado de la revisión:} no se identifican requisitos huérfanos, porque todos cuentan con una fuente, al menos un modelo asociado y una prueba de aceptación trazada.
+
+% ==================================================
+% P10
+% ==================================================
+\section{P10. Gestión del cambio y línea base}
+
+\subsection*{Solicitud de cambio SC-01}
+\begin{tabularx}{\textwidth}{|p{4cm}|X|}\hline
+Identificador & SC-01 \\\hline
+Requisito afectado & RNF-01 \\\hline
+Solicitud & Reducir el tiempo máximo de registro de un pedido de menos de 3 segundos a menos de 2 segundos. \\\hline
+Motivo & Mejorar la rapidez del proceso de registro de pedidos. \\\hline
+Impacto según P9 & Afecta RNF-01, su relación con RF-01, el flujo de registro de P2 y la prueba PA-03, cuyo criterio de éxito debe actualizarse. \\\hline
+Decisión del CCB & Aprobada \\\hline
+Justificación & El cambio mejora la eficiencia y mantiene el alcance funcional del sistema; requiere ajustar la prueba de desempeño. \\\hline
+Versión anterior & RNF-01 v1.0 \\\hline
+Nueva versión & RNF-01 v1.1 \\\hline
+\end{tabularx}
+
+\subsection*{Requisito actualizado}
+\textbf{RNF-01 v1.1:} El sistema deberá registrar cada pedido en menos de 2 segundos, medidos desde la confirmación de la solicitud hasta la visualización de la confirmación, bajo condiciones normales de operación y con stock disponible.
+
+\subsection*{Actualización de la prueba afectada}
+\textbf{PA-03 v1.1:} el criterio de éxito se actualiza de menos de 3 segundos a menos de 2 segundos.
+
+\subsection*{Línea base declarada}
+La siguiente configuración se congela como línea base de la evaluación:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|X|p{3cm}|}\hline
+\textbf{Elemento de configuración} & \textbf{Versión} \\
+\hline
+Requisitos P5/P7, incorporando RNF-01 actualizado & 1.1 \\
+\hline
+Modelos UML P1, P2 y P3 & 1.0 \\
+\hline
+Tabla de consistencia P4 & 1.0 \\
+\hline
+Priorización MoSCoW P6 & 1.0 \\
+\hline
+Pruebas de aceptación P8, incorporando PA-03 actualizado & 1.1 \\
+\hline
+Matriz de trazabilidad P9 & 1.1 \\
+\hline
+Solicitud de cambio SC-01 & 1.0 \\
+\hline
+\end{tabularx}
+\caption{Configuración declarada como línea base.}
+\end{table}
 
 \end{document}
